@@ -84,10 +84,10 @@ def fetch_detail(url):
       agent = random.choice(list(randomAgent))
       print agent
       bro.addheaders=[('User-agent',agent)]
-##      proxy = random.choice(ipProxies)
-##      print proxy
-##      if proxy:
-##         bro.set_proxies({'http':proxy})   
+      proxy = random.choice(ipProxies)
+      print proxy
+      if proxy:
+         bro.set_proxies({'http':proxy})   
       content = bro.open(url)
       con = content.read()
       soup = BeautifulSoup(con)
@@ -137,7 +137,7 @@ def fetch_detail(url):
 
 def get_proxies():
     global ipProxies
-    output=os.system("C:\Users\liangs4\AppData\Local\Programs\Python\Python36-32\Scripts\proxybroker.exe find --types HTTP HTTPS --limit 10 --outfile proxy.txt")
+    output=os.system("proxybroker find --types HTTP HTTPS --limit 10 --outfile proxy.txt")
     print output
     proxy = open("proxy.txt", "r")
     for line in proxy.readlines():
@@ -178,10 +178,10 @@ def fetch_data(url):
       agent = random.choice(list(randomAgent))
       print agent
       bro.addheaders=[('User-agent',agent)]
-##      proxy = random.choice(ipProxies)
-##      print proxy
-##      if proxy:
-##         bro.set_proxies({'http':proxy})      
+      proxy = random.choice(ipProxies)
+      print proxy
+      if proxy:
+         bro.set_proxies({'http':proxy})      
       content = bro.open(url)
       con = content.read()
       soup = BeautifulSoup(con)
@@ -212,8 +212,8 @@ if __name__ == '__main__':
     global lock, output
     lock = threading.Lock()    
     get_user_agents()
-    #get_proxies()
-    #print random.choice(ipProxies)
+    get_proxies()
+    print random.choice(ipProxies)
     generate_urls()
     print("remainURL length", len(remainURL))
     #print(urls)
